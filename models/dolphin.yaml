@@ -1,0 +1,13 @@
+name: dolphin-2.9
+parameters:
+  model: dolphin-2.9-llama3-8b-q4_k_m.gguf
+backend: llama-cpp
+# Llama3 specific context and stop tokens
+context_size: 4096
+f16: true
+template:
+  chat: llama3
+  completion: llama3
+stop_token:
+  - "<|im_end|>"
+  - "<|eot_id|>"

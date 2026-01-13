@@ -1,0 +1,29 @@
+services:
+  local-ai:
+    image: localai/localai:latest-cpu # Use -gpu if you have an NVIDIA card
+    container_name: localai
+    platform: linux/amd64
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/readyz"]
+      interval: 1m
+      timeout: 20m
+      retries: 5
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./models:/build/models
+    environment:
+      - MODELS_PATH=/build/models
+      - DEBUG=true
+      - THREADS=8
+      - LOCALAI_THREADS=10
+      # - REBUILD=false
+      #- LOCALAI_WATCHDOG_IDLE=true
+      - LOCALAI_PARALLELß_REQUESTS=true
+      - LOCALAI_ADDRESS=:8081
+      - LOCALAI_DISABLE_WEBUI=true
+      - LOCALAI_F16=true
+      - F16=true
+    command: ["run", "llama-3.2-1b-instruct:q4_k_m",]
+   # command: ["run", "dolphin-2.9-llama3-8b", "llama-3.2-1b-instruct:q4_k_m"]
+    
