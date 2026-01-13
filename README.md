@@ -1,2 +1,3 @@
 # content-enhancement
-POC of Enhancing Content
+POC of Enhancing Content leveraging private AI
+
